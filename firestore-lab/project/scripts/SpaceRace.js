@@ -18,19 +18,33 @@
 /**
  * Initializes the SpaceRace app.
  */
+// function SpaceRace() {
+//   firebase.auth().signInAnonymously().then(() => {
+//     this.initTemplates();
+//     this.initRouter();
+//   }).catch(err => {
+//     console.log(err);
+//   });
+// }
+
+
 function SpaceRace() {
   firebase.auth().signInAnonymously().then(() => {
-    this.initTemplates();
-    this.initRouter();
+    firebase.firestore().enablePersistence()
+      .then(() => {
+        this.initTemplates();
+        this.initRouter();
+      });
   }).catch(err => {
     console.log(err);
   });
 }
 
+
 /**
  * Initializes the router for the SpaceRace app.
  */
-SpaceRace.prototype.initRouter = function() {
+SpaceRace.prototype.initRouter = function () {
   this.router = new Navigo();
 
   this.router
@@ -57,7 +71,7 @@ SpaceRace.prototype.initRouter = function() {
     });
 };
 
-SpaceRace.prototype.getCleanPath = function(dirtyPath) {
+SpaceRace.prototype.getCleanPath = function (dirtyPath) {
   if (dirtyPath.startsWith('/index.html')) {
     return dirtyPath.split('/').slice(1).join('/');
   } else {
@@ -65,11 +79,11 @@ SpaceRace.prototype.getCleanPath = function(dirtyPath) {
   }
 };
 
-SpaceRace.prototype.getFirebaseConfig = function() {
+SpaceRace.prototype.getFirebaseConfig = function () {
   return firebase.app().options;
 };
 
-SpaceRace.prototype.getRandomItem = function(arr) {
+SpaceRace.prototype.getRandomItem = function (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 

@@ -15,14 +15,14 @@ limitations under the License.
 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Space Race!</title>
 
   <link rel="icon" href="images/rocket-icon.png">
-  <link rel="stylesheet"
-  href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
   <link rel="stylesheet" href="style/main.css" />
@@ -63,12 +63,18 @@ limitations under the License.
       <div class="card-supporting-text">
         <div class="card-name" data-fir-content="name">...</div>
         <div class="details">
-          <div class="ship-attribute">speed:</div> <div class="ship-attribute-value" data-fir-content="speed"></div>
-          <div class="ship-attribute">accel:</div> <div class="ship-attribute-value" data-fir-content="acceleration"></div>
-          <div class="ship-attribute">weight:</div> <div class="ship-attribute-value" data-fir-content="weight"></div>
-          <div class="ship-attribute">handling:</div> <div class="ship-attribute-value" data-fir-content="handling"></div>
-          <div class="ship-attribute">braking:</div> <div class="ship-attribute-value" data-fir-content="braking"></div>
-          <div class="ship-attribute">special:</div> <div data-fir-content="special"></div>
+          <div class="ship-attribute">speed:</div>
+          <div class="ship-attribute-value" data-fir-content="speed"></div>
+          <div class="ship-attribute">accel:</div>
+          <div class="ship-attribute-value" data-fir-content="acceleration"></div>
+          <div class="ship-attribute">weight:</div>
+          <div class="ship-attribute-value" data-fir-content="weight"></div>
+          <div class="ship-attribute">handling:</div>
+          <div class="ship-attribute-value" data-fir-content="handling"></div>
+          <div class="ship-attribute">braking:</div>
+          <div class="ship-attribute-value" data-fir-content="braking"></div>
+          <div class="ship-attribute">special:</div>
+          <div data-fir-content="special"></div>
         </div>
       </div>
     </div>
@@ -82,15 +88,15 @@ limitations under the License.
           <input class="card-name" id="name" name="name"></input>
           <div class="details">
             <label for="speed" class="ship-attribute">speed:</label>
-            <input id="speed" type="number" name="speed" min="1" max="10"/>
+            <input id="speed" type="number" name="speed" min="1" max="10" />
             <label for="acceleration" class="ship-attribute">accel:</label>
-            <input id="acceleration" type="number" name="acceleration" min="1" max="10"/>
+            <input id="acceleration" type="number" name="acceleration" min="1" max="10" />
             <label for="weight" class="ship-attribute">weight:</label>
-            <input id="weight" type="number" name="weight" min="1" max="10"/>
+            <input id="weight" type="number" name="weight" min="1" max="10" />
             <label for="handling" class="ship-attribute">handling:</label>
-            <input id="handling" type="number" name="handling" min="1" max="10"/>
+            <input id="handling" type="number" name="handling" min="1" max="10" />
             <label for="braking" class="ship-attribute">braking:</label>
-            <input id="braking" type="number" name="braking" min="1" max="10"/>
+            <input id="braking" type="number" name="braking" min="1" max="10" />
             <label for="special" class="ship-attribute">special:</label>
             <select id="special" name="special">
               <option value=""></option>
@@ -116,6 +122,10 @@ limitations under the License.
   </div>
 
   <!-- TODO - add Firebase libraries here -->
+  <script src="/__/firebase/4.9.0/firebase-app.js"></script>
+  <script src="/__/firebase/4.9.0/firebase-auth.js"></script>
+  <script src="/__/firebase/4.9.0/firebase-firestore.js"></script>
+  <script src="/__/firebase/init.js"></script>
 
   <script src="https://unpkg.com/navigo@6"></script>
 
@@ -123,5 +133,21 @@ limitations under the License.
   <script src="/scripts/SpaceRace.View.js"></script>
   <script src="/scripts/SpaceRace.Mock.js"></script>
   <script src="/scripts/SpaceRace.Data.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => {
+            console.log('Service worker registered! 😎', reg);
+          })
+          .catch(err => {
+            console.log('😥 Registration failed: ', err);
+          });
+      });
+    }
+  </script>
+
 </body>
+
 </html>
